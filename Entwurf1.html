@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Book Title] — The Climate Trilemma</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a2332;
+  --cream:#f7f5f0;
+  --green:#2d5a3d;
+  --gold:#c8922a;
+  --gray:#6b7280;
+  --sage:#eef2ee;
+  --text:#1f2937;
+  --border:#e5e7eb;
+}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* NAV */
+nav{
+  background:var(--navy);
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:68px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  color:rgba(255,255,255,0.92);font-size:1rem;font-weight:600;
+  letter-spacing:0.01em;white-space:nowrap;
+}
+.nav-links{display:flex;gap:4px}
+.nav-btn{
+  color:rgba(255,255,255,0.55);border:none;background:none;
+  font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:8px 18px;border-radius:4px;cursor:pointer;
+  transition:color 0.18s,background 0.18s;
+}
+.nav-btn:hover{color:rgba(255,255,255,0.9)}
+.nav-btn.active{color:#fff;background:rgba(255,255,255,0.13)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* SHARED SECTION STYLES */
+.section-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:10px}
+.section-heading{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.25;margin-bottom:16px;color:var(--navy)}
+.section-sub{font-size:0.95rem;line-height:1.75;color:var(--gray);max-width:640px}
+.inner{max-width:1080px;margin:0 auto;padding:0 5%}
+
+/* ────────────── PAGE 1: THE BOOK ────────────── */
+.book-hero{
+  background:var(--navy);
+  padding:72px 5% 80px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;
+}
+.hero-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);color:#fff;line-height:1.15;margin-bottom:14px}
+.hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 40px}
+.hero-meta{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+
+/* TRILEMMA */
+.trilemma-wrap{padding:72px 5%}
+.trilemma-grid{
+  display:flex;gap:60px;align-items:flex-start;
+  max-width:1080px;margin:0 auto;
+}
+.trilemma-left{flex-shrink:0;width:min(420px,100%)}
+.trilemma-right{flex:1;min-height:260px;display:flex;flex-direction:column;justify-content:center}
+.corner-prompt{
+  color:var(--gray);font-style:italic;font-size:0.9rem;
+  padding:32px;border:1px dashed var(--border);border-radius:8px;
+  text-align:center;
+}
+.corner-panel{display:none}
+.corner-panel.visible{display:block}
+.corner-panel h3{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:10px;color:var(--navy)}
+.corner-panel p{font-size:0.9rem;line-height:1.75;color:var(--gray);margin-bottom:16px}
+.corner-tag{
+  display:inline-block;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 14px;border-radius:20px;font-weight:500;
+}
+
+/* SVG styles */
+#trilemma-svg .c-node{cursor:pointer;transition:opacity 0.15s}
+#trilemma-svg .c-node:hover{opacity:0.85}
+#trilemma-svg .c-node.active circle.outer{opacity:0.25!important}
+
+/* QUOTE BANNER */
+.quote-banner{
+  background:var(--navy);
+  padding:36px 0;overflow:hidden;
+  position:relative;
+}
+.quote-banner::before,.quote-banner::after{
+  content:'';position:absolute;top:0;width:100px;height:100%;z-index:2;
+}
+.quote-banner::before{left:0;background:linear-gradient(to right,var(--navy),transparent)}
+.quote-banner::after{right:0;background:linear-gradient(to left,var(--navy),transparent)}
+.quote-track{
+  display:flex;gap:0;
+  animation:scroll-quotes 55s linear infinite;
+  width:max-content;
+}
+.quote-banner:hover .quote-track{animation-play-state:paused}
+@keyframes scroll-quotes{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.quote-item{
+  display:flex;flex-direction:column;gap:10px;
+  padding:0 48px;border-left:2px solid var(--gold);
+  min-width:360px;max-width:480px;
+}
+.quote-text{color:rgba(255,255,255,0.88);font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;line-height:1.65}
+.quote-attr{color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
+
+/* BUY */
+.buy-section{background:var(--sage);padding:64px 5%}
+.buy-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:14px;margin-top:32px;max-width:1080px;
+}
+.buy-card{
+  background:#fff;border:1px solid var(--border);border-radius:8px;
+  padding:22px;cursor:pointer;
+  transition:border-color 0.18s,transform 0.18s,box-shadow 0.18s;
+  display:flex;flex-direction:column;gap:6px;
+}
+.buy-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.07)}
+.buy-region{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);font-weight:500}
+.buy-name{font-weight:500;font-size:0.92rem;color:var(--navy)}
+.buy-sub{font-size:0.78rem;color:var(--gray)}
+
+/* ────────────── PAGE 2: THE DATA ────────────── */
+.data-hero{background:var(--green);padding:64px 5%}
+.data-hero .section-heading{color:#fff}
+.data-hero .section-sub{color:rgba(255,255,255,0.7)}
+.data-section{padding:64px 5%}
+.tier-header{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.tier-badge{
+  font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;font-weight:500;
+}
+.tier-badge.public{background:var(--gold);color:#fff}
+.tier-badge.expert{background:var(--navy);color:#fff}
+.tier-desc{font-size:0.82rem;color:var(--gray)}
+.data-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:22px;margin-bottom:60px;max-width:1080px;
+}
+.data-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.data-placeholder{
+  height:200px;background:var(--sage);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;color:var(--green);
+}
+.data-placeholder span{font-size:0.8rem;font-weight:500;letter-spacing:0.05em}
+.data-icon{font-size:2rem;opacity:0.5}
+.data-body{padding:20px}
+.data-title{font-weight:500;font-size:0.92rem;margin-bottom:6px;color:var(--navy)}
+.data-desc{font-size:0.82rem;color:var(--gray);line-height:1.55}
+
+/* ────────────── PAGE 3: AUTHORS ────────────── */
+.authors-hero{background:var(--gold);padding:64px 5%}
+.authors-hero .section-heading{color:#fff}
+.authors-hero .section-sub{color:rgba(255,255,255,0.75)}
+.authors-section{padding:64px 5%}
+.author-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:28px;max-width:1080px;
+}
+.author-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.author-photo-area{
+  height:160px;
+  background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(45,90,61,0.12));
+  display:flex;align-items:center;justify-content:center;
+}
+.author-initials{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.5rem;
+}
+.author-body{padding:24px}
+.author-name{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:4px;color:var(--navy)}
+.author-aff{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.09em;color:var(--green);font-weight:500;margin-bottom:14px}
+.author-bio{font-size:0.85rem;color:var(--gray);line-height:1.65;margin-bottom:18px}
+.author-link{
+  font-size:0.8rem;color:var(--navy);font-weight:500;
+  letter-spacing:0.04em;display:inline-flex;align-items:center;gap:5px;
+  transition:color 0.15s;
+}
+.author-link:hover{color:var(--green)}
+.author-link::after{content:'→';font-size:0.85rem}
+
+/* ────────────── PAGE 4: NEWS ────────────── */
+.news-hero{background:#1f2937;padding:64px 5%}
+.news-hero .section-heading{color:#fff}
+.news-hero .section-sub{color:rgba(255,255,255,0.65)}
+.news-section{padding:64px 5%}
+.news-block{margin-bottom:60px;max-width:1080px}
+.news-block-header{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:28px;padding-bottom:14px;
+  border-bottom:1.5px solid var(--navy);
+}
+.news-block-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy)}
+.news-block-icon{font-size:1.2rem}
+.news-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:18px;
+}
+.news-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:22px;transition:transform 0.18s,box-shadow 0.18s;
+}
+.news-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.07)}
+.news-type{font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:10px}
+.news-title{font-weight:500;font-size:0.9rem;line-height:1.45;margin-bottom:6px;color:var(--navy)}
+.news-source{font-size:0.78rem;color:var(--gray);margin-bottom:14px}
+.news-link{font-size:0.78rem;color:var(--navy);font-weight:500;transition:color 0.15s}
+.news-link:hover{color:var(--green)}
+.news-link::after{content:' →'}
+
+/* FOOTER */
+footer{
+  background:var(--navy);color:rgba(255,255,255,0.4);
+  text-align:center;padding:28px 5%;font-size:0.78rem;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  nav{padding:0 4%}
+  .nav-brand{font-size:0.85rem}
+  .nav-btn{padding:7px 10px;font-size:0.7rem;letter-spacing:0.06em}
+  .trilemma-grid{flex-direction:column;gap:36px}
+  .trilemma-left{width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">[Book Title]</div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="gotoPage('book',this)">The Book</button>
+    <button class="nav-btn" onclick="gotoPage('data',this)">The Data</button>
+    <button class="nav-btn" onclick="gotoPage('authors',this)">The Authors</button>
+    <button class="nav-btn" onclick="gotoPage('news',this)">News</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ PAGE 1: THE BOOK ═══════════════ -->
+<div id="page-book" class="page active">
+
+  <div class="book-hero">
+    <div class="hero-eyebrow">Edinburgh University Press — [Year]</div>
+    <h1 class="hero-title">[Book Title]</h1>
+    <p class="hero-subtitle">[Subtitle or short punchy line goes here — one sentence that captures the central argument]</p>
+    <div class="hero-meta">Climate Policy · Democratic Legitimacy · Economic Growth</div>
+  </div>
+
+  <!-- TRILEMMA -->
+  <div class="trilemma-wrap">
+    <div style="max-width:1080px;margin:0 auto 0">
+      <div class="section-eyebrow">The central argument</div>
+      <h2 class="section-heading">The Green Trilemma</h2>
+      <p class="section-sub" style="margin-bottom:48px">
+        [Two-sentence summary of the book here.] When it comes to economic growth, democratic legitimacy, and effective climate action — governments can achieve at most two at a time. Click each corner to explore how nations navigate these trade-offs.
+      </p>
+    </div>
+    <div class="trilemma-grid">
+
+      <!-- SVG TRIANGLE -->
+      <div class="trilemma-left">
+        <svg id="trilemma-svg" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+          <!-- Triangle body -->
+          <polygon points="210,38 40,342 380,342"
+            fill="rgba(45,90,61,0.04)" stroke="#d1d5db" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Edge labels -->
+          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
+            <textPath href="#edge-left" startOffset="50%">Growth ↔ Climate</textPath>
+          </text>
+          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
+            <textPath href="#edge-right" startOffset="50%">Climate ↔ Democracy</textPath>
+          </text>
+          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
+            <textPath href="#edge-bottom" startOffset="50%">Democracy ↔ Growth</textPath>
+          </text>
+
+          <defs>
+            <path id="edge-left" d="M 210,38 L 40,342"/>
+            <path id="edge-right" d="M 210,38 L 380,342"/>
+            <path id="edge-bottom" d="M 40,342 L 380,342"/>
+          </defs>
+
+          <!-- Center label -->
+          <text x="210" y="195" text-anchor="middle" font-family="Inter" font-size="10" fill="#9ca3af" font-style="italic">impossible zone</text>
+
+          <!-- CORNER: Climate Action (top) -->
+          <g class="c-node" id="c-climate" onclick="pickCorner('climate')" role="button" aria-label="Climate Action">
+            <circle class="outer" cx="210" cy="38" r="34" fill="#2d5a3d" opacity="0.12"/>
+            <circle cx="210" cy="38" r="22" fill="#2d5a3d"/>
+            <text x="210" y="33" text-anchor="middle" font-family="Inter" font-size="8" fill="#fff" font-weight="500">CLIMATE</text>
+            <text x="210" y="44" text-anchor="middle" font-family="Inter" font-size="8" fill="#fff" font-weight="500">ACTION</text>
+          </g>
+
+          <!-- CORNER: Economic Growth (bottom-left) -->
+          <g class="c-node" id="c-growth" onclick="pickCorner('growth')" role="button" aria-label="Economic Growth">
+            <circle class="outer" cx="40" cy="342" r="34" fill="#c8922a" opacity="0.12"/>
+            <circle cx="40" cy="342" r="22" fill="#c8922a"/>
+            <text x="40" y="337" text-anchor="middle" font-family="Inter" font-size="7.5" fill="#fff" font-weight="500">ECONOMIC</text>
+            <text x="40" y="348" text-anchor="middle" font-family="Inter" font-size="7.5" fill="#fff" font-weight="500">GROWTH</text>
+          </g>
+
+          <!-- CORNER: Democratic Legitimacy (bottom-right) -->
+          <g class="c-node" id="c-democracy" onclick="pickCorner('democracy')" role="button" aria-label="Democratic Legitimacy">
+            <circle class="outer" cx="380" cy="342" r="34" fill="#1a2332" opacity="0.12"/>
+            <circle cx="380" cy="342" r="22" fill="#1a2332"/>
+            <text x="380" y="335" text-anchor="middle" font-family="Inter" font-size="7" fill="#fff" font-weight="500">DEMOCRATIC</text>
+            <text x="380" y="344" text-anchor="middle" font-family="Inter" font-size="7" fill="#fff" font-weight="500">LEGITIMACY</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="trilemma-right">
+        <div class="corner-prompt" id="trilemma-prompt">
+          ← Click a corner to explore the trade-offs
+        </div>
+
+        <div class="corner-panel" id="panel-climate">
+          <h3>Climate Action</h3>
+          <p>[Placeholder: When governments prioritise ambitious climate targets, they face hard political choices — either bypassing slow democratic deliberation, or imposing costs that undermine economic dynamism. This section of the book examines when and how effective green policy is possible within democratic constraints, and what coalitions make it viable.]</p>
+          <span class="corner-tag" style="background:#2d5a3d1a;color:#2d5a3d">Chapters [X–X]</span>
+        </div>
+
+        <div class="corner-panel" id="panel-growth">
+          <h3>Economic Growth</h3>
+          <p>[Placeholder: Prioritising competitiveness and economic dynamism often means either delaying ambitious climate targets or circumventing the democratic processes that slow down reform. This section explores how green industrial transformation — through strategic investment, redistribution, and coalition-building — can be made compatible with economic dynamism.]</p>
+          <span class="corner-tag" style="background:#c8922a1a;color:#c8922a">Chapters [X–X]</span>
+        </div>
+
+        <div class="corner-panel" id="panel-democracy">
+          <h3>Democratic Legitimacy</h3>
+          <p>[Placeholder: Democratic processes are slow, and citizens resist the short-term costs of the green transition — yet bypassing democracy breeds backlash that ultimately undermines reform. This section asks how states can rebuild democratic capacity and public support for climate action without sacrificing urgency or ambition.]</p>
+          <span class="corner-tag" style="background:#1a23321a;color:#1a2332">Chapters [X–X]</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QUOTE BANNER -->
+  <div class="quote-banner" aria-label="Endorsements">
+    <div class="quote-track" id="quote-track"></div>
+  </div>
+
+  <!-- BUY THE BOOK -->
+  <div class="buy-section">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="section-eyebrow">Get the book</div>
+      <h2 class="section-heading">Where to buy</h2>
+      <div class="buy-grid">
+        <a href="https://edinburghuniversitypress.com" target="_blank" rel="noopener" class="buy-card">
+          <span class="buy-region">Publisher</span>
+          <span class="buy-name">Edinburgh University Press</span>
+          <span class="buy-sub">Hardback, paperback & e-book</span>
+        </a>
+        <a href="https://www.amazon.de" target="_blank" rel="noopener" class="buy-card">
+          <span class="buy-region">DE / AT / CH</span>
+          <span class="buy-name">Amazon.de</span>
+          <span class="buy-sub">Germany, Austria, Switzerland</span>
+        </a>
+        <a href="https://www.amazon.fr" target="_blank" rel="noopener" class="buy-card">
+          <span class="buy-region">FR / BE / LU</span>
+          <span class="buy-name">Amazon.fr</span>
+          <span class="buy-sub">France & Benelux</span>
+        </a>
+        <a href="https://www.bol.com" target="_blank" rel="noopener" class="buy-card">
+          <span class="buy-region">NL / BE</span>
+          <span class="buy-name">Bol.com</span>
+          <span class="buy-sub">Netherlands & Belgium</span>
+        </a>
+        <a href="https://www.amazon.es" target="_blank" rel="noopener" class="buy-card">
+          <span class="buy-region">ES / PT</span>
+          <span class="buy-name">Amazon.es</span>
+          <span class="buy-sub">Spain & Portugal</span>
+        </a>
+        <a href="#" class="buy-card" style="border-style:dashed;opacity:0.6">
+          <span class="buy-region">+ Add</span>
+          <span class="buy-name">Your regional store</span>
+          <span class="buy-sub">Edit this file to add a link</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-book -->
+
+
+<!-- ═══════════════ PAGE 2: THE DATA ═══════════════ -->
+<div id="page-data" class="page">
+
+  <div class="data-hero">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.7)">Empirical research</div>
+    <h2 class="section-heading">The Data</h2>
+    <p class="section-sub">
+      Interactive visualisations from the book's empirical research — presented at two levels for different audiences.
+    </p>
+  </div>
+
+  <div class="data-section">
+    <div style="max-width:1080px;margin:0 auto">
+
+      <div class="tier-header">
+        <span class="tier-badge public">For general readers</span>
+        <span class="tier-desc">Accessible figures on the key findings</span>
+      </div>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-placeholder">
+            <div class="data-icon">📊</div>
+            <span>Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Figure title]</div>
+            <div class="data-desc">[Short description of what this chart shows and what readers should take away from it.]</div>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-placeholder">
+            <div class="data-icon">🗺️</div>
+            <span>Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Figure title]</div>
+            <div class="data-desc">[Short description of what this chart shows and what readers should take away from it.]</div>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-placeholder">
+            <div class="data-icon">📈</div>
+            <span>Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Figure title]</div>
+            <div class="data-desc">[Short description of what this chart shows and what readers should take away from it.]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-header">
+        <span class="tier-badge expert">For researchers</span>
+        <span class="tier-desc">Full methodological detail for academic colleagues</span>
+      </div>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-placeholder" style="background:rgba(26,35,50,0.05)">
+            <div class="data-icon" style="color:var(--navy)">📉</div>
+            <span style="color:var(--navy)">Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Technical figure title]</div>
+            <div class="data-desc">[Detailed description incl. dataset, methodology, and statistical approach for specialist readers.]</div>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-placeholder" style="background:rgba(26,35,50,0.05)">
+            <div class="data-icon" style="color:var(--navy)">📐</div>
+            <span style="color:var(--navy)">Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Technical figure title]</div>
+            <div class="data-desc">[Detailed description incl. dataset, methodology, and statistical approach for specialist readers.]</div>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-placeholder" style="background:rgba(26,35,50,0.05)">
+            <div class="data-icon" style="color:var(--navy)">🔢</div>
+            <span style="color:var(--navy)">Figure coming soon</span>
+          </div>
+          <div class="data-body">
+            <div class="data-title">[Technical figure title]</div>
+            <div class="data-desc">[Detailed description incl. dataset, methodology, and statistical approach for specialist readers.]</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page-data -->
+
+
+<!-- ═══════════════ PAGE 3: THE AUTHORS ═══════════════ -->
+<div id="page-authors" class="page">
+
+  <div class="authors-hero">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.75)">The research team</div>
+    <h2 class="section-heading">The Authors</h2>
+    <p class="section-sub">[Optional one-sentence description of the collaboration or the institutions involved.]</p>
+  </div>
+
+  <div class="authors-section">
+    <div class="author-grid" style="max-width:1080px;margin:0 auto">
+
+      <div class="author-card">
+        <div class="author-photo-area">
+          <div class="author-initials">A1</div>
+        </div>
+        <div class="author-body">
+          <div class="author-name">[Author 1 Name]</div>
+          <div class="author-aff">[University / Institution]</div>
+          <div class="author-bio">[Short biography: research focus, key publications, current position. 2–4 sentences that give a sense of expertise and background.]</div>
+          <a href="#" class="author-link">Personal website</a>
+        </div>
+      </div>
+
+      <div class="author-card">
+        <div class="author-photo-area">
+          <div class="author-initials" style="background:var(--green)">A2</div>
+        </div>
+        <div class="author-body">
+          <div class="author-name">[Author 2 Name]</div>
+          <div class="author-aff">[University / Institution]</div>
+          <div class="author-bio">[Short biography: research focus, key publications, current position. 2–4 sentences that give a sense of expertise and background.]</div>
+          <a href="#" class="author-link">Personal website</a>
+        </div>
+      </div>
+
+      <div class="author-card">
+        <div class="author-photo-area">
+          <div class="author-initials" style="background:var(--gold)">A3</div>
+        </div>
+        <div class="author-body">
+          <div class="author-name">[Author 3 Name]</div>
+          <div class="author-aff">[University / Institution]</div>
+          <div class="author-bio">[Short biography: research focus, key publications, current position. 2–4 sentences that give a sense of expertise and background.]</div>
+          <a href="#" class="author-link">Personal website</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page-authors -->
+
+
+<!-- ═══════════════ PAGE 4: NEWS ═══════════════ -->
+<div id="page-news" class="page">
+
+  <div class="news-hero">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.6)">Press & reception</div>
+    <h2 class="section-heading">News</h2>
+    <p class="section-sub">Podcasts, media coverage, and academic reviews of the book.</p>
+  </div>
+
+  <div class="news-section">
+
+    <!-- PODCASTS -->
+    <div class="news-block">
+      <div class="news-block-header">
+        <span class="news-block-icon">🎙</span>
+        <h2>Podcasts</h2>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-type">Podcast</div>
+          <div class="news-title">[Episode title — interviewer and host name]</div>
+          <div class="news-source">[Podcast name] — [Month Year]</div>
+          <a href="#" class="news-link">Listen</a>
+        </div>
+        <div class="news-card">
+          <div class="news-type">Podcast</div>
+          <div class="news-title">[Episode title — interviewer and host name]</div>
+          <div class="news-source">[Podcast name] — [Month Year]</div>
+          <a href="#" class="news-link">Listen</a>
+        </div>
+        <div class="news-card" style="border-style:dashed;opacity:0.55">
+          <div class="news-type">Podcast</div>
+          <div class="news-title">More episodes coming soon</div>
+          <div class="news-source">Edit this file to add links</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDIA COVERAGE -->
+    <div class="news-block">
+      <div class="news-block-header">
+        <span class="news-block-icon">📰</span>
+        <h2>Media coverage</h2>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-type">Article</div>
+          <div class="news-title">[Headline of article or op-ed]</div>
+          <div class="news-source">[Publication] — [Month Year]</div>
+          <a href="#" class="news-link">Read</a>
+        </div>
+        <div class="news-card">
+          <div class="news-type">Interview</div>
+          <div class="news-title">[Headline of article or op-ed]</div>
+          <div class="news-source">[Publication] — [Month Year]</div>
+          <a href="#" class="news-link">Read</a>
+        </div>
+        <div class="news-card">
+          <div class="news-type">Article</div>
+          <div class="news-title">[Headline of article or op-ed]</div>
+          <div class="news-source">[Publication] — [Month Year]</div>
+          <a href="#" class="news-link">Read</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="news-block">
+      <div class="news-block-header">
+        <span class="news-block-icon">⭐</span>
+        <h2>Reviews</h2>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-type">Book review</div>
+          <div class="news-title">[Review title or journal]</div>
+          <div class="news-source">[Reviewer name], [Journal] — [Year]</div>
+          <a href="#" class="news-link">Read</a>
+        </div>
+        <div class="news-card">
+          <div class="news-type">Book review</div>
+          <div class="news-title">[Review title or journal]</div>
+          <div class="news-source">[Reviewer name], [Journal] — [Year]</div>
+          <a href="#" class="news-link">Read</a>
+        </div>
+        <div class="news-card" style="border-style:dashed;opacity:0.55">
+          <div class="news-type">Book review</div>
+          <div class="news-title">More reviews coming soon</div>
+          <div class="news-source">Edit this file to add links</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /page-news -->
+
+<footer>
+  <p>[Book Title] &mdash; &copy; [Year] [Authors]. Published by Edinburgh University Press.</p>
+</footer>
+
+<script>
+/* ── PAGE NAVIGATION ── */
+function gotoPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* ── TRILEMMA INTERACTION ── */
+function pickCorner(id) {
+  document.getElementById('trilemma-prompt').style.display = 'none';
+  document.querySelectorAll('.corner-panel').forEach(p => p.classList.remove('visible'));
+  document.getElementById('panel-' + id).classList.add('visible');
+
+  /* SVG highlight */
+  document.querySelectorAll('.c-node').forEach(n => {
+    n.querySelector('circle.outer').setAttribute('opacity', '0.10');
+  });
+  const active = document.getElementById('c-' + id);
+  active.querySelector('circle.outer').setAttribute('opacity', '0.30');
+}
+
+/* ── QUOTE BANNER ── */
+const QUOTES = [
+  {
+    text: "Book asks all the right questions",
+    attr: "Manuela Moschella — University of Bologna"
+  },
+  {
+    text: "I am in love with the book",
+    attr: "Cornel Ban — University of Copenhagen"
+  },
+  {
+    text: "When it comes to economic growth, democratic legitimacy, and effective climate action you can't have it all. You can only get two at a time … The way out is a reinvigorated politics that puts citizens in charge of rebuilding an effective state. It's not going to be easy, but it is possible",
+    attr: "Mark Blyth — Watson Institute, Brown University"
+  },
+  {
+    text: "This lively and thought-provoking book lays bare the dilemmas facing democratic governments trying to address climate change",
+    attr: "Peter Hall — Harvard University"
+  },
+  {
+    text: "A compelling framework … the authors show how green industrial transformation, strategic redistribution, and coalition-building can reconcile climate change mitigation with economic dynamism and democratic legitimacy",
+    attr: "Federica Genovese — University of Oxford"
+  }
+];
+
+(function buildBanner() {
+  const track = document.getElementById('quote-track');
+  const all = [...QUOTES, ...QUOTES]; /* duplicate for seamless loop */
+  track.innerHTML = all.map(q =>
+    `<div class="quote-item">
+      <span class="quote-text">&ldquo;${q.text}&rdquo;</span>
+      <span class="quote-attr">${q.attr}</span>
+    </div>`
+  ).join('');
+})();
+</script>
+</body>
+</html>
