@@ -269,95 +269,87 @@ footer{
     <div class="hero-meta">Climate Policy · Democratic Legitimacy · Economic Growth</div>
   </div>
 
-  <!-- TRILEMMA -->
-  <div class="trilemma-wrap">
-    <div style="max-width:1080px;margin:0 auto 0">
-      <div class="section-eyebrow">The central argument</div>
-      <h2 class="section-heading">The Green Trilemma</h2>
-      <p class="section-sub" style="margin-bottom:48px">
-        [Two-sentence summary of the book here.] When it comes to economic growth, democratic legitimacy, and effective climate action — governments can achieve at most two at a time. Click each corner to explore how nations navigate these trade-offs.
-      </p>
-    </div>
-    <div class="trilemma-grid">
+  <!-- FRAMEWORK: TRIANGLE + THREE STRATEGIES -->
+  <div style="padding:52px 5%">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="section-eyebrow">The Framework</div>
+      <h2 class="section-heading">Pick any two corners</h2>
+      <p style="font-style:italic;color:var(--gray);margin-bottom:36px;max-width:56ch">Each strategy secures the two goals it sits between — and sacrifices the third. There is no point in the middle. Click a strategy to open it.</p>
 
-      <!-- SVG TRIANGLE -->
-      <div class="trilemma-left">
-        <svg id="trilemma-svg" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-          <!-- Triangle body -->
-          <polygon points="210,38 40,342 380,342"
-            fill="rgba(45,90,61,0.04)" stroke="#d1d5db" stroke-width="1.5" stroke-linejoin="round"/>
-
-          <!-- Edge labels -->
-          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
-            <textPath href="#edge-left" startOffset="50%">Growth ↔ Climate</textPath>
-          </text>
-          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
-            <textPath href="#edge-right" startOffset="50%">Climate ↔ Democracy</textPath>
-          </text>
-          <text font-family="Inter" font-size="10.5" fill="#9ca3af" text-anchor="middle">
-            <textPath href="#edge-bottom" startOffset="50%">Democracy ↔ Growth</textPath>
-          </text>
-
-          <defs>
-            <path id="edge-left" d="M 210,38 L 40,342"/>
-            <path id="edge-right" d="M 210,38 L 380,342"/>
-            <path id="edge-bottom" d="M 40,342 L 380,342"/>
-          </defs>
-
-          <!-- Center label -->
-          <text x="210" y="195" text-anchor="middle" font-family="Inter" font-size="10" fill="#9ca3af" font-style="italic">impossible zone</text>
-
-          <!-- CORNER: Climate Action (top) -->
-          <g class="c-node" id="c-climate" onclick="pickCorner('climate')" role="button" aria-label="Climate Action">
-            <circle class="outer" cx="210" cy="38" r="34" fill="#2d5a3d" opacity="0.12"/>
-            <circle cx="210" cy="38" r="22" fill="#2d5a3d"/>
-            <text x="210" y="33" text-anchor="middle" font-family="Inter" font-size="8" fill="#fff" font-weight="500">CLIMATE</text>
-            <text x="210" y="44" text-anchor="middle" font-family="Inter" font-size="8" fill="#fff" font-weight="500">ACTION</text>
-          </g>
-
-          <!-- CORNER: Economic Growth (bottom-left) -->
-          <g class="c-node" id="c-growth" onclick="pickCorner('growth')" role="button" aria-label="Economic Growth">
-            <circle class="outer" cx="40" cy="342" r="34" fill="#c8922a" opacity="0.12"/>
-            <circle cx="40" cy="342" r="22" fill="#c8922a"/>
-            <text x="40" y="337" text-anchor="middle" font-family="Inter" font-size="7.5" fill="#fff" font-weight="500">ECONOMIC</text>
-            <text x="40" y="348" text-anchor="middle" font-family="Inter" font-size="7.5" fill="#fff" font-weight="500">GROWTH</text>
-          </g>
-
-          <!-- CORNER: Democratic Legitimacy (bottom-right) -->
-          <g class="c-node" id="c-democracy" onclick="pickCorner('democracy')" role="button" aria-label="Democratic Legitimacy">
-            <circle class="outer" cx="380" cy="342" r="34" fill="#1a2332" opacity="0.12"/>
-            <circle cx="380" cy="342" r="22" fill="#1a2332"/>
-            <text x="380" y="335" text-anchor="middle" font-family="Inter" font-size="7" fill="#fff" font-weight="500">DEMOCRATIC</text>
-            <text x="380" y="344" text-anchor="middle" font-family="Inter" font-size="7" fill="#fff" font-weight="500">LEGITIMACY</text>
-          </g>
-        </svg>
-      </div>
-
-      <!-- INFO PANEL -->
-      <div class="trilemma-right">
-        <div class="corner-prompt" id="trilemma-prompt">
-          ← Click a corner to explore the trade-offs
+      <!-- CSS Triangle -->
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="font-weight:600;font-size:1.1rem;color:var(--green)">Climate Action</div>
+        <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:12px">decarbonize in time</div>
+        <div style="display:flex;justify-content:center">
+          <div style="width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:220px solid rgba(26,35,50,0.07)"></div>
         </div>
-
-        <div class="corner-panel" id="panel-climate">
-          <h3>Climate Action</h3>
-          <p>[Placeholder: When governments prioritise ambitious climate targets, they face hard political choices — either bypassing slow democratic deliberation, or imposing costs that undermine economic dynamism. This section of the book examines when and how effective green policy is possible within democratic constraints, and what coalitions make it viable.]</p>
-          <span class="corner-tag" style="background:#2d5a3d1a;color:#2d5a3d">Chapters [X–X]</span>
+        <div style="display:flex;justify-content:space-between;max-width:360px;margin:8px auto 0">
+          <div style="text-align:left">
+            <div style="font-weight:600;font-size:1.1rem;color:var(--gold)">Growth</div>
+            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">rising prosperity</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:600;font-size:1.1rem;color:var(--navy)">Democracy</div>
+            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">electoral legitimacy</div>
+          </div>
         </div>
-
-        <div class="corner-panel" id="panel-growth">
-          <h3>Economic Growth</h3>
-          <p>[Placeholder: Prioritising competitiveness and economic dynamism often means either delaying ambitious climate targets or circumventing the democratic processes that slow down reform. This section explores how green industrial transformation — through strategic investment, redistribution, and coalition-building — can be made compatible with economic dynamism.]</p>
-          <span class="corner-tag" style="background:#c8922a1a;color:#c8922a">Chapters [X–X]</span>
-        </div>
-
-        <div class="corner-panel" id="panel-democracy">
-          <h3>Democratic Legitimacy</h3>
-          <p>[Placeholder: Democratic processes are slow, and citizens resist the short-term costs of the green transition — yet bypassing democracy breeds backlash that ultimately undermines reform. This section asks how states can rebuild democratic capacity and public support for climate action without sacrificing urgency or ambition.]</p>
-          <span class="corner-tag" style="background:#1a23321a;color:#1a2332">Chapters [X–X]</span>
+        <div style="font-family:monospace;font-size:0.7rem;color:var(--gray);margin-top:18px;line-height:1.9">
+          <span style="color:var(--gold)">Bottom edge = Liberal Status Quo</span> &nbsp;·&nbsp;
+          <span style="color:var(--green)">Left edge = Big Green State</span> &nbsp;·&nbsp;
+          <span style="color:var(--navy)">Right edge = Degrowth</span>
         </div>
       </div>
 
+      <!-- Strategy 1: Liberal Status Quo -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--gold);background:#fff;margin-bottom:10px;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Liberal Status Quo</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Growth</span> &nbsp;
+            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Climate Action</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 2</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Green growth within liberal markets: incremental targets, carbon pricing, private investment. It keeps voters and capital onside — but renewables get layered on top of fossil fuels rather than replacing them, and laws are hollowed out by lobbying. The pace and scale never match the science.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ This is where almost every Western democracy sits today.</p>
+        </div>
+      </details>
+
+      <!-- Strategy 2: Big Green State -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--green);background:#fff;margin-bottom:10px;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Big Green State</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
+            <span style="color:var(--green)">✓ Growth</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Democracy</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 3</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">A technocratic, sovereign state plans and directs the transition at speed — disciplining capital, allocating credit, hitting capacity targets. It can decarbonize key sectors fast and capture industrial dividends, precisely because it is freed from electoral responsiveness. The cost is democratic accountability, and it offers no guarantee of a just transition.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ Already emerging in China, Vietnam, Singapore — and perhaps the Gulf petrostates.</p>
+        </div>
+      </details>
+
+      <!-- Strategy 3: Degrowth -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--navy);background:#fff;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">Degrowth</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
+            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Growth</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 4</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Planned contraction of high-impact sectors, shorter working weeks, steep redistribution and well-being over GDP. Normatively coherent and democratically deliberative — but no governing party in a competitive democracy can campaign on shrinking the economy. Growth is the currency of electoral legitimacy, so degrowth stays politically impossible.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ The most coherent, least plausible route — until it is suddenly the only one left.</p>
+        </div>
+      </details>
     </div>
   </div>
 
