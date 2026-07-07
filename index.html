@@ -121,6 +121,12 @@ nav{
 #trilemma-svg .c-node:hover{opacity:0.85}
 #trilemma-svg .c-node.active circle.outer{opacity:0.25!important}
 
+/* INTERACTIVE FRAMEWORK TRIANGLE */
+.tri-sector{cursor:pointer}
+.tri-sector .tri-edge{transition:stroke-width 0.15s}
+.tri-sector .tri-fill{transition:opacity 0.15s}
+.tri-sector:hover .tri-edge{stroke-width:5}
+
 /* QUOTE BANNER */
 .quote-banner{
   background:var(--navy);
@@ -446,34 +452,49 @@ footer{
     <div style="max-width:1080px;margin:0 auto">
       <div class="section-eyebrow">Three strategies</div>
       <h2 class="section-heading">Pick any two corners</h2>
-      <p style="font-style:italic;color:var(--gray);margin-bottom:36px;max-width:56ch">Each strategy secures the two goals it sits between — and sacrifices the third. There is no point in the middle. Click a strategy to open it.</p>
+      <p style="font-style:italic;color:var(--gray);margin-bottom:36px;max-width:56ch">Each strategy secures the two goals it sits between — and sacrifices the third. There is no point in the middle. Click an edge of the triangle, or a strategy below, to open it.</p>
 
-      <!-- CSS Triangle -->
-      <div style="text-align:center;margin-bottom:40px">
-        <div style="font-weight:600;font-size:1.1rem;color:var(--navy)">Democracy</div>
-        <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:12px">electoral legitimacy</div>
-        <div style="display:flex;justify-content:center">
-          <div style="width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:220px solid rgba(26,35,50,0.07)"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;max-width:360px;margin:8px auto 0">
-          <div style="text-align:left">
-            <div style="font-weight:600;font-size:1.1rem;color:var(--gold)">Growth</div>
-            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">rising prosperity</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-weight:600;font-size:1.1rem;color:var(--green)">Climate Action</div>
-            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">decarbonize in time</div>
-          </div>
-        </div>
-        <div style="font-family:monospace;font-size:0.7rem;color:var(--gray);margin-top:18px;line-height:1.9">
-          <span style="color:var(--gold)">Left edge = Liberal Status Quo</span> &nbsp;·&nbsp;
-          <span style="color:var(--green)">Bottom edge = Big Green State</span> &nbsp;·&nbsp;
-          <span style="color:var(--navy)">Right edge = Degrowth</span>
-        </div>
+      <!-- Interactive SVG Triangle -->
+      <div style="max-width:460px;margin:0 auto 40px">
+        <svg viewBox="0 0 400 360" style="width:100%;height:auto;overflow:visible">
+          <!-- Left sector: Liberal Status Quo -->
+          <g class="tri-sector" data-id="lsq" onclick="selectStrategy('lsq')">
+            <title>The Liberal Status Quo — click to view</title>
+            <path class="tri-fill" d="M200,40 L40,310 L200,220 Z" fill="var(--gold)" opacity="0"></path>
+            <line class="tri-edge" x1="200" y1="40" x2="40" y2="310" stroke="var(--gold)" stroke-width="3"></line>
+            <text x="120" y="172" transform="rotate(-59.4 120 172)" text-anchor="middle" fill="var(--gold)" font-family="monospace" font-weight="600" font-size="12" letter-spacing="0.02em">LIBERAL STATUS QUO</text>
+          </g>
+
+          <!-- Bottom sector: Big Green State -->
+          <g class="tri-sector" data-id="bgs" onclick="selectStrategy('bgs')">
+            <title>The Big Green State — click to view</title>
+            <path class="tri-fill" d="M40,310 L360,310 L200,220 Z" fill="var(--green)" opacity="0"></path>
+            <line class="tri-edge" x1="40" y1="310" x2="360" y2="310" stroke="var(--green)" stroke-width="3"></line>
+            <text x="200" y="297" text-anchor="middle" fill="var(--green)" font-family="monospace" font-weight="600" font-size="12" letter-spacing="0.02em">BIG GREEN STATE</text>
+          </g>
+
+          <!-- Right sector: Degrowth -->
+          <g class="tri-sector" data-id="degrowth" onclick="selectStrategy('degrowth')">
+            <title>Degrowth — click to view</title>
+            <path class="tri-fill" d="M200,40 L360,310 L200,220 Z" fill="var(--navy)" opacity="0"></path>
+            <line class="tri-edge" x1="200" y1="40" x2="360" y2="310" stroke="var(--navy)" stroke-width="3"></line>
+            <text x="280" y="172" transform="rotate(59.4 280 172)" text-anchor="middle" fill="var(--navy)" font-family="monospace" font-weight="600" font-size="12" letter-spacing="0.02em">DEGROWTH</text>
+          </g>
+
+          <!-- Vertex labels (not clickable) -->
+          <text x="200" y="20" text-anchor="middle" fill="var(--navy)" font-family="'Playfair Display',serif" font-weight="600" font-size="17">Democracy</text>
+          <text x="200" y="34" text-anchor="middle" fill="var(--gray)" font-family="monospace" font-size="9" letter-spacing="0.08em">ELECTORAL LEGITIMACY</text>
+
+          <text x="40" y="330" text-anchor="middle" fill="var(--gold)" font-family="'Playfair Display',serif" font-weight="600" font-size="17">Growth</text>
+          <text x="40" y="344" text-anchor="middle" fill="var(--gray)" font-family="monospace" font-size="9" letter-spacing="0.08em">RISING PROSPERITY</text>
+
+          <text x="360" y="330" text-anchor="middle" fill="var(--green)" font-family="'Playfair Display',serif" font-weight="600" font-size="17">Climate Action</text>
+          <text x="360" y="344" text-anchor="middle" fill="var(--gray)" font-family="monospace" font-size="9" letter-spacing="0.08em">DECARBONIZE IN TIME</text>
+        </svg>
       </div>
 
       <!-- Strategy 1: Liberal Status Quo -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--gold);background:#fff;margin-bottom:10px;border-radius:6px">
+      <details id="detail-lsq" data-strat-id="lsq" class="strategy-detail" style="border:1.5px solid var(--border);border-left:5px solid var(--gold);background:#fff;margin-bottom:10px;border-radius:6px">
         <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
           <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Liberal Status Quo</div>
           <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
@@ -490,7 +511,7 @@ footer{
       </details>
 
       <!-- Strategy 2: Big Green State -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--green);background:#fff;margin-bottom:10px;border-radius:6px">
+      <details id="detail-bgs" data-strat-id="bgs" class="strategy-detail" style="border:1.5px solid var(--border);border-left:5px solid var(--green);background:#fff;margin-bottom:10px;border-radius:6px">
         <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
           <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Big Green State</div>
           <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
@@ -507,7 +528,7 @@ footer{
       </details>
 
       <!-- Strategy 3: Degrowth -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--navy);background:#fff;border-radius:6px">
+      <details id="detail-degrowth" data-strat-id="degrowth" class="strategy-detail" style="border:1.5px solid var(--border);border-left:5px solid var(--navy);background:#fff;border-radius:6px">
         <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
           <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">Degrowth</div>
           <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
@@ -735,6 +756,37 @@ function pickCorner(id) {
   const active = document.getElementById('c-' + id);
   active.querySelector('circle.outer').setAttribute('opacity', '0.30');
 }
+
+/* ── FRAMEWORK TRIANGLE INTERACTION ── */
+function highlightEdge(id) {
+  document.querySelectorAll('.tri-sector').forEach(g => {
+    const isActive = g.dataset.id === id;
+    g.querySelector('.tri-fill').setAttribute('opacity', isActive ? '0.18' : '0');
+    g.querySelector('.tri-edge').setAttribute('stroke-width', isActive ? '6' : '3');
+  });
+}
+
+function selectStrategy(id) {
+  document.querySelectorAll('.strategy-detail').forEach(d => {
+    d.open = (d.dataset.stratId === id);
+  });
+  highlightEdge(id);
+  const target = document.getElementById('detail-' + id);
+  if (target) target.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+document.querySelectorAll('.strategy-detail').forEach(d => {
+  d.addEventListener('toggle', () => {
+    if (d.open) {
+      highlightEdge(d.dataset.stratId);
+      document.querySelectorAll('.strategy-detail').forEach(o => {
+        if (o !== d) o.open = false;
+      });
+    } else {
+      highlightEdge(null);
+    }
+  });
+});
 
 /* ── QUOTE BANNER ── */
 const QUOTES = [
