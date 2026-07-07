@@ -67,6 +67,32 @@ nav{
 .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 40px}
 .hero-meta{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
 
+/* INTRO + COVER */
+.intro-wrap{background:var(--cream);padding:72px 5%;border-bottom:1px solid var(--border)}
+.intro-grid{
+  max-width:1080px;margin:0 auto;
+  display:flex;gap:56px;align-items:center;
+}
+.intro-text{flex:1.3}
+.intro-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:16px;font-weight:500}
+.intro-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.intro-cover{flex:0 0 auto;width:min(260px,38vw)}
+.cover-frame{
+  width:100%;aspect-ratio:2/3;border-radius:4px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(26,35,50,0.18);
+}
+.cover-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-placeholder{
+  display:none;width:100%;height:100%;
+  border:1.5px dashed var(--border);border-radius:4px;background:#fff;
+  align-items:center;justify-content:center;text-align:center;
+  color:var(--gray);font-size:0.75rem;line-height:1.6;padding:20px;
+}
+@media(max-width:700px){
+  .intro-grid{flex-direction:column-reverse;gap:32px}
+  .intro-cover{width:min(220px,60vw)}
+}
+
 /* TRILEMMA */
 .trilemma-wrap{padding:72px 5%}
 .trilemma-grid{
@@ -186,7 +212,7 @@ nav{
 }
 .author-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .author-photo-area{
-  height:160px;
+  height:320px;
   background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(45,90,61,0.12));
   display:flex;align-items:center;justify-content:center;
 }
@@ -256,10 +282,10 @@ footer{
 </head>
 <body>
 
-<nav>
-  <div class="nav-brand">Growth, Democracy or Climate Action?</div>
+<nav style="justify-content:center">
   <div class="nav-links">
     <button class="nav-btn active" onclick="gotoPage('book',this)">The Book</button>
+    <button class="nav-btn" onclick="gotoPage('framework',this)">Framework</button>
     <button class="nav-btn" onclick="gotoPage('data',this)">The Data</button>
     <button class="nav-btn" onclick="gotoPage('authors',this)">The Authors</button>
     <button class="nav-btn" onclick="gotoPage('news',this)">Press</button>
@@ -280,87 +306,19 @@ footer{
     <div class="quote-track" id="quote-track"></div>
   </div>
 
-  <!-- FRAMEWORK: TRIANGLE + THREE STRATEGIES -->
-  <div style="padding:52px 5%">
-    <div style="max-width:1080px;margin:0 auto">
-      <div class="section-eyebrow">The Framework</div>
-      <h2 class="section-heading">Pick any two corners</h2>
-      <p style="font-style:italic;color:var(--gray);margin-bottom:36px;max-width:56ch">Each strategy secures the two goals it sits between — and sacrifices the third. There is no point in the middle. Click a strategy to open it.</p>
-
-      <!-- CSS Triangle -->
-      <div style="text-align:center;margin-bottom:40px">
-        <div style="font-weight:600;font-size:1.1rem;color:var(--green)">Climate Action</div>
-        <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:12px">decarbonize in time</div>
-        <div style="display:flex;justify-content:center">
-          <div style="width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:220px solid rgba(26,35,50,0.07)"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;max-width:360px;margin:8px auto 0">
-          <div style="text-align:left">
-            <div style="font-weight:600;font-size:1.1rem;color:var(--gold)">Growth</div>
-            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">rising prosperity</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-weight:600;font-size:1.1rem;color:var(--navy)">Democracy</div>
-            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">electoral legitimacy</div>
-          </div>
-        </div>
-        <div style="font-family:monospace;font-size:0.7rem;color:var(--gray);margin-top:18px;line-height:1.9">
-          <span style="color:var(--gold)">Bottom edge = Liberal Status Quo</span> &nbsp;·&nbsp;
-          <span style="color:var(--green)">Left edge = Big Green State</span> &nbsp;·&nbsp;
-          <span style="color:var(--navy)">Right edge = Degrowth</span>
+  <!-- INTRO + COVER -->
+  <div class="intro-wrap">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="intro-eyebrow">About the book</div>
+        <p class="intro-body">Governments promise all three at once — but that promise no longer holds. Growth, Democracy, or Climate Action? reveals the hard trade-offs now reshaping advanced capitalism, and maps the political paths still open before the window closes. We outline three scenarios — a market-led Liberal Status Quo, a state-led Big Green State, and radical Degrowth — and show why none has yet resolved the trade-off. What it will take instead is a rebuilt, capable state and a broad coalition of working- and middle-class voters who see the transition as a route to good jobs, not just carbon cuts.</p>
+      </div>
+      <div class="intro-cover">
+        <div class="cover-frame">
+          <img src="cover.jpg" alt="Book cover — Growth, Democracy or Climate Action?" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cover-placeholder">Add<br>cover.jpg<br>to the repo</div>
         </div>
       </div>
-
-      <!-- Strategy 1: Liberal Status Quo -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--gold);background:#fff;margin-bottom:10px;border-radius:6px">
-        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
-          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Liberal Status Quo</div>
-          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
-            <span style="color:var(--green)">✓ Growth</span> &nbsp;
-            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
-            <span style="color:#a32c1c;text-decoration:line-through">Climate Action</span>
-          </div>
-        </summary>
-        <div style="padding:4px 20px 20px">
-          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 2</div>
-          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Green growth within liberal markets: incremental targets, carbon pricing, private investment. It keeps voters and capital onside — but renewables get layered on top of fossil fuels rather than replacing them, and laws are hollowed out by lobbying. The pace and scale never match the science.</p>
-          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ This is where almost every Western democracy sits today.</p>
-        </div>
-      </details>
-
-      <!-- Strategy 2: Big Green State -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--green);background:#fff;margin-bottom:10px;border-radius:6px">
-        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
-          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Big Green State</div>
-          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
-            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
-            <span style="color:var(--green)">✓ Growth</span> &nbsp;
-            <span style="color:#a32c1c;text-decoration:line-through">Democracy</span>
-          </div>
-        </summary>
-        <div style="padding:4px 20px 20px">
-          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 3</div>
-          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">A technocratic, sovereign state plans and directs the transition at speed — disciplining capital, allocating credit, hitting capacity targets. It can decarbonize key sectors fast and capture industrial dividends, precisely because it is freed from electoral responsiveness. The cost is democratic accountability, and it offers no guarantee of a just transition.</p>
-          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ Already emerging in China, Vietnam, Singapore — and perhaps the Gulf petrostates.</p>
-        </div>
-      </details>
-
-      <!-- Strategy 3: Degrowth -->
-      <details style="border:1.5px solid var(--border);border-left:5px solid var(--navy);background:#fff;border-radius:6px">
-        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
-          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">Degrowth</div>
-          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
-            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
-            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
-            <span style="color:#a32c1c;text-decoration:line-through">Growth</span>
-          </div>
-        </summary>
-        <div style="padding:4px 20px 20px">
-          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 4</div>
-          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Planned contraction of high-impact sectors, shorter working weeks, steep redistribution and well-being over GDP. Normatively coherent and democratically deliberative — but no governing party in a competitive democracy can campaign on shrinking the economy. Growth is the currency of electoral legitimacy, so degrowth stays politically impossible.</p>
-          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ The most coherent, least plausible route — until it is suddenly the only one left.</p>
-        </div>
-      </details>
     </div>
   </div>
 
@@ -455,12 +413,107 @@ footer{
 </div><!-- /page-book -->
 
 
+<!-- ═══════════════ PAGE: THE FRAMEWORK ═══════════════ -->
+<div id="page-framework" class="page">
+
+  <div class="data-hero">
+    <h2 class="section-heading">The Framework</h2>
+    <p class="section-sub">This is the analytical core of the book: a map of the trade-offs every advanced democracy now has to navigate between growth, democracy, and climate action. Explore the framework at the heart of the book: three strategies, three different trade-offs, and no escape from the choice between them.</p>
+  </div>
+
+  <!-- FRAMEWORK: TRIANGLE + THREE STRATEGIES -->
+  <div style="padding:52px 5%">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="section-eyebrow">Three strategies</div>
+      <h2 class="section-heading">Pick any two corners</h2>
+      <p style="font-style:italic;color:var(--gray);margin-bottom:36px;max-width:56ch">Each strategy secures the two goals it sits between — and sacrifices the third. There is no point in the middle. Click a strategy to open it.</p>
+
+      <!-- CSS Triangle -->
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="font-weight:600;font-size:1.1rem;color:var(--navy)">Democracy</div>
+        <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:12px">electoral legitimacy</div>
+        <div style="display:flex;justify-content:center">
+          <div style="width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:220px solid rgba(26,35,50,0.07)"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;max-width:360px;margin:8px auto 0">
+          <div style="text-align:left">
+            <div style="font-weight:600;font-size:1.1rem;color:var(--gold)">Growth</div>
+            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">rising prosperity</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:600;font-size:1.1rem;color:var(--green)">Climate Action</div>
+            <div style="font-family:monospace;font-size:0.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)">decarbonize in time</div>
+          </div>
+        </div>
+        <div style="font-family:monospace;font-size:0.7rem;color:var(--gray);margin-top:18px;line-height:1.9">
+          <span style="color:var(--gold)">Left edge = Liberal Status Quo</span> &nbsp;·&nbsp;
+          <span style="color:var(--green)">Bottom edge = Big Green State</span> &nbsp;·&nbsp;
+          <span style="color:var(--navy)">Right edge = Degrowth</span>
+        </div>
+      </div>
+
+      <!-- Strategy 1: Liberal Status Quo -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--gold);background:#fff;margin-bottom:10px;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Liberal Status Quo</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Growth</span> &nbsp;
+            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Climate Action</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 2</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Green growth within liberal markets: incremental targets, carbon pricing, private investment. It keeps voters and capital onside — but renewables get layered on top of fossil fuels rather than replacing them, and laws are hollowed out by lobbying. The pace and scale never match the science.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ This is where almost every Western democracy sits today.</p>
+        </div>
+      </details>
+
+      <!-- Strategy 2: Big Green State -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--green);background:#fff;margin-bottom:10px;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">The Big Green State</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
+            <span style="color:var(--green)">✓ Growth</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Democracy</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 3</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">A technocratic, sovereign state plans and directs the transition at speed — disciplining capital, allocating credit, hitting capacity targets. It can decarbonize key sectors fast and capture industrial dividends, precisely because it is freed from electoral responsiveness. The cost is democratic accountability, and it offers no guarantee of a just transition.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ Already emerging in China, Vietnam, Singapore — and perhaps the Gulf petrostates.</p>
+        </div>
+      </details>
+
+      <!-- Strategy 3: Degrowth -->
+      <details style="border:1.5px solid var(--border);border-left:5px solid var(--navy);background:#fff;border-radius:6px">
+        <summary style="cursor:pointer;padding:18px 20px;list-style:none;-webkit-appearance:none">
+          <div style="font-size:1.15rem;font-weight:600;font-family:'Playfair Display',serif;color:var(--navy)">Degrowth</div>
+          <div style="font-family:monospace;font-size:0.72rem;margin-top:8px">
+            <span style="color:var(--green)">✓ Climate Action</span> &nbsp;
+            <span style="color:var(--green)">✓ Democracy</span> &nbsp;
+            <span style="color:#a32c1c;text-decoration:line-through">Growth</span>
+          </div>
+        </summary>
+        <div style="padding:4px 20px 20px">
+          <div style="font-family:monospace;font-size:0.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:8px">Chapter 4</div>
+          <p style="font-size:0.92rem;line-height:1.7;margin:0 0 10px;color:var(--text)">Planned contraction of high-impact sectors, shorter working weeks, steep redistribution and well-being over GDP. Normatively coherent and democratically deliberative — but no governing party in a competitive democracy can campaign on shrinking the economy. Growth is the currency of electoral legitimacy, so degrowth stays politically impossible.</p>
+          <p style="font-style:italic;color:var(--gray);font-size:0.85rem;margin:0">↳ The most coherent, least plausible route — until it is suddenly the only one left.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+</div><!-- /page-framework -->
+
+
 <!-- ═══════════════ PAGE 2: THE DATA ═══════════════ -->
 <div id="page-data" class="page">
 
   <div class="data-hero">
     <h2 class="section-heading">The Data</h2>
-    <p class="section-sub">Interactive visualisations from the book's empirical basis.</p>
+    <p class="section-sub">Growth has slowed and emissions have too — on paper. These three figures show, based on data from <a href="https://ourworldindata.org/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">ourworldindata.org</a>, what that progress actually looks like once you follow the voters, money and the goods: emissions embedded in consumption barely fall, well-being still tracks carbon, and no country has broken the link between the two.</p>
   </div>
 
   <div class="data-section">
@@ -469,23 +522,41 @@ footer{
       <!-- VISUALISATION 1 -->
       <div style="margin-bottom:64px">
         <div class="section-eyebrow">Figure 1</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:6px">CO₂ emissions per capita vs. GDP per capita</h3>
-        <p style="font-size:0.88rem;color:var(--gray);margin-bottom:20px;max-width:680px">-</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:6px">Why voters won't vote for less</h3>
+        <p style="font-size:0.88rem;color:var(--gray);margin-bottom:6px;max-width:680px">Life satisfaction vs. CO₂ emissions per capita, 2024</p>
+        <p style="font-size:0.92rem;color:var(--text);line-height:1.75;margin-bottom:20px;max-width:680px">Life satisfaction and per capita emissions remain closely correlated across countries — higher emissions, higher reported well-being, even if the relationship flattens at the top. This illustrates the book's central argument against degrowth as a political strategy, whatever its scientific merits. As we put it in the book: <em>"A democracy that relies on growth for legitimacy cannot easily survive without it."</em> Asking voters to accept less isn't just unpopular — it's a structural contradiction for any government whose legitimacy depends on rising living standards.</p>
+        <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+          <iframe src="https://ourworldindata.org/grapher/life-satisfaction-vs-co-emissions-per-capita?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>        
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);margin-top:8px">Source: Our World in Data</p>
+      </div>
+
+      <!-- VISUALISATION 2 -->
+      <div style="margin-bottom:64px">
+        <div class="section-eyebrow">Figure 2</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:6px">Wealth and emissions, still tied together</h3>
+        <p style="font-size:0.88rem;color:var(--gray);margin-bottom:6px;max-width:680px">Consumption-based CO₂ emissions per capita vs. GDP per capita</p>
+        <p style="font-size:0.92rem;color:var(--text);line-height:1.75;margin-bottom:20px;max-width:680px">Across high-income countries, consumption-based emissions per capita still rise and fall with GDP per capita. This is exactly the pattern the book argues the Liberal Status Quo cannot escape: as long as prosperity is measured by GDP, decarbonizing what people actually consume — not just what their country produces — remains unsolved.</p>
         <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
           <iframe src="https://ourworldindata.org/grapher/consumption-co2-per-capita-vs-gdppc?v=1&csvType=full&useColumnShortNames=false&tab=chart" loading="lazy" style="width:100%;height:600px;border:0" allow="web-share; clipboard-write"></iframe>
         </div>
         <p style="font-size:0.75rem;color:var(--gray);margin-top:8px">Source: Our World in Data</p>
       </div>
 
-      <!-- VISUALISATION 2 -->
+      <!-- VISUALISATION 3 -->
       <div style="margin-bottom:32px">
-        <div class="section-eyebrow">Figure 2</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:6px">Life satisfaction vs. CO₂ emissions per capita, 2024</h3>
-        <p style="font-size:0.88rem;color:var(--gray);margin-bottom:20px;max-width:680px">-</p>
-        <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-          <iframe src="https://ourworldindata.org/grapher/life-satisfaction-vs-co-emissions-per-capita?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>        
+        <div class="section-eyebrow">Figure 3</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:6px">Progress, or the illusion of it?</h3>
+        <p style="font-size:0.88rem;color:var(--gray);margin-bottom:6px;max-width:680px">Book Figure 4.1 — CO₂ and GDP growth in 21 advanced capitalist democracies since 1960</p>
+        <p style="font-size:0.92rem;color:var(--text);line-height:1.75;margin-bottom:20px;max-width:680px">Since 1960, emissions in advanced capitalist democracies have grown more slowly than GDP — the textbook signal of "decoupling," and the evidence usually cited for green growth optimism. Read next to Figure 1, the figure shows that this decoupling is largely a production-side story — once emissions embedded in imported goods are counted the link between growth and emissions barely loosens. The two figures together make the book's "decoupling paradox" argument: progress that looks real from one angle and stalls from another.</p>
+        <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;aspect-ratio:16/9;background:var(--sage)">
+          <img src="figure-4-1.jpg" alt="Book Figure 4.1 — CO2 and GDP growth in 21 advanced capitalist democracies since 1960" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--green);text-align:center;padding:20px">
+            <div style="font-size:2rem;opacity:0.5">▦</div>
+            <span style="font-size:0.8rem;font-weight:500;letter-spacing:0.05em">Add figure-4-1.jpg to the repo</span>
+          </div>
         </div>
-        <p style="font-size:0.75rem;color:var(--gray);margin-top:8px">Source: Our World in Data</p>
+        <p style="font-size:0.75rem;color:var(--gray);margin-top:8px">Source: Growth, Democracy or Climate Action?, Figure 4.1</p>
       </div>
 
     </div>
