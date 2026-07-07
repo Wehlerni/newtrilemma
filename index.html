@@ -263,10 +263,7 @@ nav{
 .news-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.07)}
 .news-type{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:4px}
 .news-title{font-weight:500;font-size:0.85rem;line-height:1.35;margin-bottom:4px;color:var(--navy)}
-.news-source{font-size:0.74rem;color:var(--gray);margin-bottom:6px}
-.news-link{font-size:0.76rem;color:var(--navy);font-weight:500;transition:color 0.15s}
-.news-link:hover{color:var(--green)}
-.news-link::after{content:' →'}
+.news-source{font-size:0.74rem;color:var(--gray)}
 
 /* FOOTER */
 footer{
@@ -286,7 +283,8 @@ footer{
 </head>
 <body>
 
-<nav style="justify-content:flex-end">
+<nav>
+  <div class="nav-brand" id="nav-brand" style="display:none">Growth, Democracy or Climate Action?</div>
   <div class="nav-links">
     <button class="nav-btn active" onclick="gotoPage('book',this)">The Book</button>
     <button class="nav-btn" onclick="gotoPage('framework',this)">Framework</button>
@@ -659,12 +657,11 @@ footer{
         <h2>Reviews</h2>
       </div>
       <div class="news-grid">
-        <div class="news-card">
+        <a href="https://www.cambridge.org/core/journals/perspectives-on-politics/article/growth-democracy-or-climate-action-the-new-trilemma-of-advanced-capitalism-by-aidan-regan-hanna-schwander-cyril-benoit-and-tim-vlandas-new-york-ny-columbia-university-press-2026-192p/29A1F88C6566C3577206196239249D47" target="_blank" rel="noopener" class="news-card">
           <div class="news-type">Book review</div>
           <div class="news-title">Growth, Democracy or Climate Action? The New Trilemma of Advanced Capitalism</div>
           <div class="news-source">Perspectives on Politics, Cambridge University Press — 2026</div>
-          <a href="https://www.cambridge.org/core/journals/perspectives-on-politics/article/growth-democracy-or-climate-action-the-new-trilemma-of-advanced-capitalism-by-aidan-regan-hanna-schwander-cyril-benoit-and-tim-vlandas-new-york-ny-columbia-university-press-2026-192p/29A1F88C6566C3577206196239249D47" target="_blank" rel="noopener" class="news-link">Read</a>
-        </div>
+        </a>
       </div>
     </div>
     
@@ -674,18 +671,16 @@ footer{
         <h2>Podcasts</h2>
       </div>
       <div class="news-grid">
-        <div class="news-card">
+        <a href="https://www.irishtimes.com/podcasts/inside-politics/is-meaningful-climate-action-possible-in-a-democracy/" target="_blank" rel="noopener" class="news-card">
           <div class="news-type">Podcast</div>
           <div class="news-title">Is meaningful climate action possible in a democracy?</div>
           <div class="news-source">Inside Politics Podcast - June 2026</div>
-          <a href="https://www.irishtimes.com/podcasts/inside-politics/is-meaningful-climate-action-possible-in-a-democracy/" target="_blank" rel="noopener" class="news-link">Listen</a>
-        </div>
-        <div class="news-card">
+        </a>
+        <a href="https://www.secondcaptains.com/2026/04/22/episode-3533-growth-democracy-or-climate-action-with-aidan-regan/" target="_blank" rel="noopener" class="news-card">
           <div class="news-type">Podcast</div>
           <div class="news-title">Growth, Democracy Or Climate Action? With Aidan Regan</div>
           <div class="news-source">Second Captains - April 2026</div>
-          <a href="https://www.secondcaptains.com/2026/04/22/episode-3533-growth-democracy-or-climate-action-with-aidan-regan/" target="_blank" rel="noopener" class="news-link">Listen</a>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -695,19 +690,16 @@ footer{
         <h2>Media coverage</h2>
       </div>
       <div class="news-grid">
-        <div class="news-card">
+        <a href="https://blogs.lse.ac.uk/europpblog/2026/07/03/climate-change-politics-degrowth/" target="_blank" rel="noopener" class="news-card">
           <div class="news-type">Article</div>
           <div class="news-title">The challenge with climate action is not about the maths – it is about the politics</div>
           <div class="news-source">LSE Blogs - July 2026</div>
-          <a href="https://blogs.lse.ac.uk/europpblog/2026/07/03/climate-change-politics-degrowth/" target="_blank" rel="noopener" class="news-link">Read</a>
-        </div>
-      <div class="news-grid">
-        <div class="news-card">
+        </a>
+        <a href="https://www.irishtimes.com/culture/books/review/2026/06/13/growth-democracy-or-climate-action-the-new-political-trilemma-of-advanced-capitalism/" target="_blank" rel="noopener" class="news-card">
           <div class="news-type">Article</div>
           <div class="news-title">Growth, Democracy, or Climate Action? The New Political Trilemma of Advanced Capitalism</div>
           <div class="news-source">The Irish Times - June 2026</div>
-          <a href="https://www.irishtimes.com/culture/books/review/2026/06/13/growth-democracy-or-climate-action-the-new-political-trilemma-of-advanced-capitalism/" target="_blank" rel="noopener" class="news-link">Read</a>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -725,6 +717,7 @@ function gotoPage(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   btn.classList.add('active');
+  document.getElementById('nav-brand').style.display = (id === 'book') ? 'none' : 'block';
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
