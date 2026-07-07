@@ -284,7 +284,7 @@ footer{
 <body>
 
 <nav>
-  <div class="nav-brand" id="nav-brand" style="display:none">Growth, Democracy or Climate Action?</div>
+  <div class="nav-brand" id="nav-brand" style="visibility:hidden">Growth, Democracy or Climate Action?</div>
   <div class="nav-links">
     <button class="nav-btn active" onclick="gotoPage('book',this)">The Book</button>
     <button class="nav-btn" onclick="gotoPage('framework',this)">Framework</button>
@@ -326,7 +326,7 @@ footer{
 
     <!-- CHAPTER-BY-CHAPTER ACCORDION -->
   <div style="padding:0 5% 60px;border-top:1px solid var(--border)">
-    <div style="max-width:720px;margin:0 auto">
+    <div style="max-width:720px;margin:0">
       <div style="padding-top:44px;margin-bottom:6px" class="section-eyebrow">Chapter by chapter</div>
       <h2 class="section-heading" style="margin-bottom:28px">Book summary</h2>
 
@@ -717,7 +717,7 @@ function gotoPage(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   btn.classList.add('active');
-  document.getElementById('nav-brand').style.display = (id === 'book') ? 'none' : 'block';
+  document.getElementById('nav-brand').style.visibility = (id === 'book') ? 'hidden' : 'visible';
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
