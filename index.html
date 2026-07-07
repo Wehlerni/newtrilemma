@@ -155,8 +155,11 @@ nav{
 /* BUY */
 .buy-section{background:var(--sage);padding:64px 5%}
 .buy-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  display:flex;flex-wrap:nowrap;overflow-x:auto;
   gap:14px;margin-top:32px;max-width:1080px;
+  padding-bottom:14px;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
 }
 .buy-card{
   background:#fff;border:1px solid var(--border);border-radius:8px;
