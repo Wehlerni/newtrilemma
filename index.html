@@ -18,7 +18,7 @@
   --text:#1f2937;
   --border:#e5e7eb;
 }
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6;display:flex;flex-direction:column}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
@@ -48,7 +48,7 @@ nav{
 
 /* PAGES */
 .page{display:none}
-.page.active{display:block}
+.page.active{display:block;flex:1}
 
 /* SHARED SECTION STYLES */
 .section-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:10px}
@@ -276,6 +276,7 @@ nav{
 footer{
   background:var(--navy);color:rgba(255,255,255,0.4);
   text-align:center;padding:28px 5%;font-size:0.78rem;
+  flex-shrink:0;
 }
 
 /* RESPONSIVE */
