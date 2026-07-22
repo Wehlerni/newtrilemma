@@ -279,13 +279,49 @@ footer{
   flex-shrink:0;
 }
 
+.nav-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  width:32px;height:24px;flex-shrink:0;position:relative;padding:0;
+}
+.nav-toggle span{
+  position:absolute;left:0;width:100%;height:2px;background:#fff;
+  border-radius:2px;transition:transform 0.2s,opacity 0.2s,top 0.2s;
+}
+.nav-toggle span:nth-child(1){top:0}
+.nav-toggle span:nth-child(2){top:11px}
+.nav-toggle span:nth-child(3){top:22px}
+.nav-toggle.open span:nth-child(1){top:11px;transform:rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
+
 /* RESPONSIVE */
 @media(max-width:700px){
   nav{padding:0 4%}
   .nav-brand{font-size:0.85rem}
-  .nav-btn{padding:7px 10px;font-size:0.7rem;letter-spacing:0.06em}
   .trilemma-grid{flex-direction:column;gap:36px}
   .trilemma-left{width:100%}
+}
+@media(max-width:680px){
+  .nav-toggle{display:block}
+  .nav-links{
+    display:flex;flex-direction:column;gap:0;
+    position:fixed;top:68px;left:0;right:0;z-index:199;
+    background:var(--navy);
+    max-height:0;overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 12px 24px rgba(0,0,0,0.18);
+    transition:max-height 0.28s ease;
+  }
+  .nav-links.open{max-height:400px}
+  .nav-btn{
+    width:100%;text-align:left;border-radius:0;
+    padding:15px 20px;font-size:0.82rem;letter-spacing:0.08em;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav-btn.active{background:rgba(255,255,255,0.08)}
+}
+@media(max-width:400px){
+  .nav-brand{font-size:0.78rem}
 }
 </style>
 </head>
@@ -293,7 +329,10 @@ footer{
 
 <nav>
   <div class="nav-brand" id="nav-brand" style="visibility:hidden">Growth, Democracy or Climate Action?</div>
-  <div class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Menu öffnen" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
     <button class="nav-btn active" onclick="gotoPage('book',this)">The Book</button>
     <button class="nav-btn" onclick="gotoPage('framework',this)">The Framework</button>
     <button class="nav-btn" onclick="gotoPage('data',this)">The Data</button>
@@ -431,7 +470,6 @@ footer{
         <a href="https://www.amazon.de/Growth-Democracy-Climate-Action-Comparative/dp/1788218884?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=85T1CQMNK19J&dib=eyJ2IjoiMSJ9.TsxOoNMzeyMKuyCBk-zXWenxpa-MSwSvJ2trbLrGgIg.6Gqq2bkMMDojAVYWQ0T4LD6_FIj93Q32siNOGGac6oc&dib_tag=se&keywords=the+new+trilemma+tim+vlandas&qid=1782211829&sprefix=the+new+trilemma+tim+vlandas%2Caps%2C80&sr=8-1" target="_blank" rel="noopener" class="buy-card">
           <span class="buy-name">Amazon (DE)</span>
           <span class="buy-sub">Hardcover, paperback & e-book</span>
-        </a>
         </a>
       </div>
     </div>
@@ -751,6 +789,21 @@ function gotoPage(id, btn) {
   btn.classList.add('active');
   document.getElementById('nav-brand').style.visibility = (id === 'book') ? 'hidden' : 'visible';
   window.scrollTo({top: 0, behavior: 'smooth'});
+  closeNav();
+}
+
+/* ── MOBILE NAV TOGGLE ── */
+function toggleNav() {
+  const links = document.getElementById('nav-links');
+  const toggle = document.getElementById('nav-toggle');
+  const isOpen = links.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', isOpen);
+}
+function closeNav() {
+  document.getElementById('nav-links').classList.remove('open');
+  document.getElementById('nav-toggle').classList.remove('open');
+  document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
 }
 
 /* ── TRILEMMA INTERACTION ── */
